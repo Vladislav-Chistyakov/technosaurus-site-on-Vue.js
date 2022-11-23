@@ -1,5 +1,9 @@
 <template>
+  <!-- Если я уберу div, то у меня возникнет ошибка,
+  что в корневом элементе (li) нельзя будет использовать фикл фор,
+  как убрать див и избавиться об ошибки? -->
 <div class="product-item__dusplay">
+  <!-- Я про этот v-for -->
   <li class="catalog__item" v-for="(product, index) in products" :key="index">
     <a class="catalog__pic" href="#">
       <img :src="product.image" :alt="product.title">
@@ -45,6 +49,7 @@
 
 <script>
 export default {
+// берём массив продуктов
   props: ['products'],
 };
 </script>
