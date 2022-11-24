@@ -1,7 +1,6 @@
 <template>
 <ul class="catalog__list">
-  // Передаём массив продуктов в ProductItem
-  <ProductItem :products="products"/>
+  <ProductItem v-for="(product, index) in products" :key="index" :product="product"/>
 </ul>
 </template>
 
