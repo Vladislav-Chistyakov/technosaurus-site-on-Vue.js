@@ -43,7 +43,7 @@
 
 <script>
 export default {
-// берём массив продуктов
+// берём продукт
   props: ['product'],
 };
 </script>
