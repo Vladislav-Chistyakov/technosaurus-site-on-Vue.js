@@ -14,5 +14,5 @@ export default [
   {
     id: 4,
     title: 'Люди',
-  }
-]
+  },
+];
