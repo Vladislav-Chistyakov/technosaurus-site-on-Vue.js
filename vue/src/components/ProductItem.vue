@@ -13,16 +13,16 @@
       {{ product.price }} ₽
     </span>
     <ul class="colors colors--black">
-      <li class="colors__item">
-        <label class="colors__label" for="input">
-          <input id="input" class="colors__radio sr-only" type="radio"
-           value="#73B6EA" v-model="color">
-          <span class="colors__value" style="background-color: #73B6EA;">
+      <li class="colors__item" v-for="colorTheme in product.color" :key="colorTheme.colorId">
+        <label class="colors__label">
+          <input class="colors__radio sr-only" type="radio"
+           :value="colorTheme.colorHesh" v-model="color" >
+          <span class="colors__value" :style="{ backgroundColor: colorTheme.colorHesh, }">
           </span>
         </label>
       </li>
-      <li class="colors__item">
-        <label class="colors__label" for="input">
+      <!--<li class="colors__item">
+        <label class="colors__label">
           <input class="colors__radio sr-only" type="radio"
            value="#8BE000" v-model="color">
           <span class="colors__value" style="background-color: #8BE000;">
@@ -30,13 +30,13 @@
         </label>
       </li>
       <li class="colors__item">
-        <label class="colors__label" for="input">
+        <label class="colors__label">
           <input class="colors__radio sr-only" type="radio"
            value="#222" v-model="color">
           <span class="colors__value" style="background-color: #222;">
           </span>
         </label>
-      </li>
+      </li>-->
     </ul>
   </li>
 </template>
@@ -44,11 +44,11 @@
 <script>
 export default {
 // берём продукт
-  props: ['product'],
   data() {
     return {
       color: '#73B6EA',
     };
   },
+  props: ['product'],
 };
 </script>

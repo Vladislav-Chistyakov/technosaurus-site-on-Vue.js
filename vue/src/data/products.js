@@ -5,6 +5,7 @@ export default [
     title: 'Завтрак программиста',
     price: 3690,
     image: '/img/zavtrak.jpg',
+    color: [{colorId: 5, colorHesh: "#FF6B00"}, {colorId: 6, colorHesh: "#FFF"},],
   },
 
   {
@@ -13,6 +14,8 @@ export default [
     title: 'Поездка на лодочке',
     price: 5660,
     image: '/img/lodocki.jpg',
+    color: [{colorId: 1, colorHesh: "#73B6EA"}, {colorId: 2, colorHesh: "#FFBE15"},
+    {colorId: 5, colorHesh: "#FF6B00"}, {colorId: 7, colorHesh: "#000"},],
   },
 
   {
@@ -21,6 +24,8 @@ export default [
     title: 'обучение в Школе 21',
     price: 21790,
     image: '/img/school-21.jpg',
+    color: [{colorId: 1, colorHesh: "#73B6EA"},
+    {colorId: 3, colorHesh: "#939393"},  {colorId: 4, colorHesh: "#8BE000"}, {colorId: 7, colorHesh: "#000"},],
   },
 
   {
@@ -29,6 +34,10 @@ export default [
     title: 'Чак-Чак из Казани',
     price: 24690,
     image: '/img/chak-chak.jpg',
+    color: [ {colorId: 2, colorHesh: "#FFBE15"},
+    {colorId: 4, colorHesh: "#8BE000"},
+    {colorId: 5, colorHesh: "#FF6B00"}, {colorId: 6, colorHesh: "#FFF"},],
+
   },
 
   {
@@ -37,6 +46,9 @@ export default [
     title: 'Настоечки в баре',
     price: 14960,
     image: '/img/nastoyki.jpg',
+    color: [{colorId: 1, colorHesh: "#73B6EA"}, {colorId: 2, colorHesh: "#FFBE15"},
+    {colorId: 3, colorHesh: "#939393"},  {colorId: 4, colorHesh: "#8BE000"},
+    {colorId: 5, colorHesh: "#FF6B00"}, {colorId: 6, colorHesh: "#FFF"}, {colorId: 7, colorHesh: "#000"},],
   },
 
   {
@@ -45,6 +57,7 @@ export default [
     title: 'Штраф за баночку энергетика',
     price: 8960,
     image: '/img/banka.jpg',
+    color: [{colorId: 5, colorHesh: "#FF6B00"}, {colorId: 6, colorHesh: "#FFF"}],
   },
 
   {
@@ -53,6 +66,7 @@ export default [
     title: 'Трезвая команда программистов',
     price: 39900,
     image: '/img/progers.jpg',
+    color: [{colorId: 2, colorHesh: "#FFBE15"}, {colorId: 7, colorHesh: "#000"},],
   },
 
   {
@@ -61,6 +75,8 @@ export default [
     title: 'Подвыпившая команда программистов',
     price: 54900,
     image: '/img/vip-proger.jpg',
+    color: [{colorId: 1, colorHesh: "#73B6EA"}, {colorId: 2, colorHesh: "#FFBE15"},
+    {colorId: 7, colorHesh: "#000"},],
   },
 
   {
@@ -69,6 +85,9 @@ export default [
     title: 'Альбом Bitlz',
     price: 4990,
     image: '/img/bitlz.jpg',
+    color: [{colorId: 1, colorHesh: "#73B6EA"}, {colorId: 2, colorHesh: "#FFBE15"},
+    {colorId: 3, colorHesh: "#939393"},  {colorId: 4, colorHesh: "#8BE000"},
+    {colorId: 6, colorHesh: "#FFF"}, {colorId: 7, colorHesh: "#000"},],
   },
 
   {
@@ -77,6 +96,9 @@ export default [
     title: 'Общее фото на фоне шоклы',
     price: 6690,
     image: '/img/photo.jpg',
+    color: [{colorId: 1, colorHesh: "#73B6EA"}, {colorId: 2, colorHesh: "#FFBE15"},
+    {colorId: 3, colorHesh: "#939393"},  {colorId: 4, colorHesh: "#8BE000"},
+    {colorId: 6, colorHesh: "#FFF"}, {colorId: 7, colorHesh: "#000"},],
   },
 
   {
@@ -85,6 +107,9 @@ export default [
     title: 'Экскурсия по Казане',
     price: 16560,
     image: '/img/kazan.jpg',
+    color: [{colorId: 1, colorHesh: "#73B6EA"}, {colorId: 2, colorHesh: "#FFBE15"},
+    {colorId: 3, colorHesh: "#939393"},  {colorId: 4, colorHesh: "#8BE000"},
+    {colorId: 5, colorHesh: "#FF6B00"}, {colorId: 6, colorHesh: "#FFF"},],
   },
 
   {
@@ -93,5 +118,8 @@ export default [
     title: 'Вид на озеро Кабан',
     price: 30690,
     image: '/img/kaban.jpg',
+    color: [{colorId: 1, colorHesh: "#73B6EA"}, {colorId: 2, colorHesh: "#FFBE15"},
+    {colorId: 3, colorHesh: "#939393"},
+    {colorId: 5, colorHesh: "#FF6B00"}, {colorId: 7, colorHesh: "#000"},],
   },
 ];

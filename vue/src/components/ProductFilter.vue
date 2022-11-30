@@ -5,12 +5,12 @@
         <form class="filter__form form" action="#" method="get" @submit.prevent="submit()">
           <fieldset class="form__block">
             <legend class="form__legend">Цена</legend>
-            <label  for="#" class="form__label form__label--price">
+            <label class="form__label form__label--price">
               <input class="form__input" type="text"
               name="min-price" v-model.number="currentPriceFrom">
               <span class="form__value">От</span>
             </label>
-            <label  for="#" class="form__label form__label--price">
+            <label class="form__label form__label--price">
               <input class="form__input" type="text"
               name="max-price" v-model.number="currentPriceTo">
               <span class="form__value">До</span>
@@ -19,7 +19,7 @@
 
           <fieldset class="form__block">
             <legend class="form__legend">Категория</legend>
-            <label  for="#" class="form__label form__label--select">
+            <label class="form__label form__label--select">
               <select class="form__select" type="text" name="category" v-model="currentCategoryId">
                 <option value="0">Все категории</option>
                 <option :value="category.id" v-for="category in categories"
@@ -33,7 +33,7 @@
             <legend class="form__legend">Цвет</legend>
             <ul class="colors">
               <li class="colors__item">
-                <label  for="#" class="colors__label">
+                <label class="colors__label">
                   <input class="colors__radio sr-only" type="radio"
                    name="color" value="#73B6EA" checked="">
                   <span class="colors__value" style="background-color: #73B6EA;">
@@ -41,38 +41,38 @@
                 </label>
               </li>
               <li class="colors__item">
-                <label  for="#" class="colors__label">
+                <label class="colors__label">
                   <input class="colors__radio sr-only" type="radio" name="color" value="#FFBE15">
                   <span class="colors__value" style="background-color: #FFBE15;">
                   </span>
                 </label>
               </li>
               <li class="colors__item">
-                <label  for="#" class="colors__label">
+                <label class="colors__label">
                   <input class="colors__radio sr-only" type="radio" name="color" value="#939393">
                   <span class="colors__value" style="background-color: #939393;">
                 </span></label>
               </li>
               <li class="colors__item">
-                <label  for="#" class="colors__label">
+                <label class="colors__label">
                   <input class="colors__radio sr-only" type="radio" name="color" value="#8BE000">
                   <span class="colors__value" style="background-color: #8BE000;">
                 </span></label>
               </li>
               <li class="colors__item">
-                <label  for="#" class="colors__label">
+                <label class="colors__label">
                   <input class="colors__radio sr-only" type="radio" name="color" value="#FF6B00">
                   <span class="colors__value" style="background-color: #FF6B00;">
                 </span></label>
               </li>
               <li class="colors__item">
-                <label  for="#" class="colors__label">
+                <label class="colors__label">
                   <input class="colors__radio sr-only" type="radio" name="color" value="#FFF">
                   <span class="colors__value" style="background-color: #FFF;">
                 </span></label>
               </li>
               <li class="colors__item">
-                <label  for="#" class="colors__label">
+                <label class="colors__label">
                   <input class="colors__radio sr-only" type="radio" name="color" value="#000">
                   <span class="colors__value" style="background-color: #000;">
                 </span></label>
@@ -84,7 +84,7 @@
             <legend class="form__legend">Объемб в ГБ</legend>
             <ul class="check-list">
               <li class="check-list__item">
-                <label  for="#" class="check-list__label">
+                <label class="check-list__label">
                   <input class="check-list__check sr-only"
                   type="checkbox" name="volume" value="8" checked="">
                   <span class="check-list__desc">
@@ -94,7 +94,7 @@
                 </label>
               </li>
               <li class="check-list__item">
-                <label  for="#" class="check-list__label">
+                <label class="check-list__label">
                   <input class="check-list__check sr-only" type="checkbox" name="volume" value="16">
                   <span class="check-list__desc">
                     16
@@ -103,7 +103,7 @@
                 </label>
               </li>
               <li class="check-list__item">
-                <label  for="#" class="check-list__label">
+                <label class="check-list__label">
                   <input class="check-list__check sr-only" type="checkbox" name="volume" value="32">
                   <span class="check-list__desc">
                     32
@@ -112,7 +112,7 @@
                 </label>
               </li>
               <li class="check-list__item">
-                <label  for="#" class="check-list__label">
+                <label class="check-list__label">
                   <input class="check-list__check sr-only" type="checkbox" name="volume" value="64">
                   <span class="check-list__desc">
                     64
@@ -121,7 +121,7 @@
                 </label>
               </li>
               <li class="check-list__item">
-                <label  for="#" class="check-list__label">
+                <label class="check-list__label">
                   <input class="check-list__check sr-only"
                    type="checkbox" name="volume" value="128">
                   <span class="check-list__desc">
@@ -131,7 +131,7 @@
                 </label>
               </li>
               <li class="check-list__item">
-                <label  for="#" class="check-list__label">
+                <label class="check-list__label">
                   <input class="check-list__check sr-only"
                   type="checkbox" name="volume" value="264">
                   <span class="check-list__desc">
