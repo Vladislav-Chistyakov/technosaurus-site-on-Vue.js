@@ -54,15 +54,21 @@ export default {
       if (this.filtrCatId) {
         filterProducts = filterProducts.filter((product) => product.catigoryId === this.filtrCatId);
       }
-      //if (this.filtrColorId) {
-      //  console.log("COLOR прошёл" + product.catigoryId);
-      //  let color;
-      //  filterProducts = filterProducts.filter((product) => {
-      //    product.catigoryId === this.filtrCatId;
-      //    color = product.color;
-      //  });
-      //  console.log(color);
-      //}
+      if (this.filtrColorId) {
+        let array = [];
+        let test = null;
+        for (let product of filterProducts) {
+          test = false
+          for (let colorRes of product.color) {
+            if (colorRes.colorId === this.filtrColorId) {
+              test = true;
+              break;
+            }
+          }
+          if (test) array.push(product);
+        }
+        filterProducts = array;
+      }
       return filterProducts;
     },
     products() {
