@@ -1,6 +1,6 @@
 <template>
   <li class="catalog__item">
-    <a class="catalog__pic" href="#">
+    <a class="catalog__pic" href="#" @click.prevent="gotoPage('product', {id: product.id})">
       <img :src="product.image" :alt="product.title">
     </a>
     <h3 class="catalog__title">
@@ -26,13 +26,18 @@
 </template>
 
 <script>
+import eventBase from '@/eventBase';
 export default {
-// берём продукт
+  props: ['product'],
   data() {
     return {
       color: '#73B6EA',
     };
   },
-  props: ['product'],
+  methods: {
+    gotoPage(pageName, pageParams) {
+      eventBase.$emit('gotoPage', pageName, pageParams);
+    }
+  },
 };
 </script>
