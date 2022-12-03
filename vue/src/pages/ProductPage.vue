@@ -41,14 +41,6 @@
             <fieldset class="form__block">
               <legend class="form__legend">Цвет:</legend>
               <ul class="colors">
-                <!--<li class="colors__item" v-for="colorTheme in product.color" :key="colorTheme.colorId">
-                  <label class="colors__label">
-                    <input class="colors__radio sr-only" type="radio"
-                    :value="colorTheme.colorHesh" v-model="color" >
-                    <span class="colors__value" :style="{ backgroundColor: colorTheme.colorHesh, }">
-                    </span>
-                  </label>
-                </li>-->
                 <li class="colors__item" v-for="colorTheme in product.color" :key="colorTheme.colorId">
                   <label class="colors__label">
                     <input class="colors__radio sr-only" type="radio" name="color-item" :value="colorTheme.colorHesh" v-model="color">
