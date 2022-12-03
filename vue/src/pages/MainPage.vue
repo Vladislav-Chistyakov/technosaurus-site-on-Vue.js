@@ -28,6 +28,7 @@ import ProductList from '@/components/ProductList.vue';
 import BasePagination from '@/components/BasePagination.vue';
 import ProductFilter from '@/components/ProductFilter.vue';
 
+
 export default {
   components: { ProductList, BasePagination, ProductFilter },
   data() {
