@@ -93,7 +93,7 @@ export default [
   {
     id: 10,
     catigoryId: 3,
-    title: 'Общее фото на фоне шоклы',
+    title: 'Общее фото на фоне Школы 21',
     price: 6690,
     image: '/img/photo.jpg',
     color: [{colorId: 1, colorHesh: "#73B6EA"}, {colorId: 2, colorHesh: "#FFBE15"},
