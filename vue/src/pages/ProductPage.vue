@@ -43,7 +43,7 @@
               <ul class="colors">
                 <li class="colors__item" v-for="colorTheme in product.color" :key="colorTheme.colorId">
                   <label class="colors__label">
-                    <input class="colors__radio sr-only" type="radio" name="color-item" :value="colorTheme.colorHesh" v-model="color">
+                    <input class="colors__radio sr-only" type="radio" name="color-item" :value="colorTheme.colorHesh" v-model="colorTheme.colorId">
                     <span class="colors__value" :style="{ backgroundColor: colorTheme.colorHesh }">
                     </span>
                   </label>
@@ -84,15 +84,15 @@
 
             <div class="item__row">
               <div class="form__counter">
-                <button type="button" aria-label="Убрать один товар">
+                <button type="button" @click="removeProduct()" aria-label="Убрать один товар">
                   <svg width="12" height="12" fill="currentColor">
                     <use xlink:href="#icon-minus"></use>
                   </svg>
                 </button>
 
-                <input type="text" value="1" name="count">
+                <input type="text" :value="counter" name="count">
 
-                <button type="button" aria-label="Добавить один товар">
+                <button @click="addProduct()" type="button" aria-label="Добавить один товар">
                   <svg width="12" height="12" fill="currentColor">
                     <use xlink:href="#icon-plus"></use>
                   </svg>
@@ -167,6 +167,11 @@ import gotoPage from '@/helpers/gotoPage';
 import numberFormat from '@/helpers/numberFormat'
 
 export default {
+  data() {
+    return {
+      counter: 1,
+    };
+  },
   computed: {
     product() {
       return products.find(product => product.id === +this.$route.params.id);
@@ -177,6 +182,14 @@ export default {
   },
   methods: {
     gotoPage,
+    addProduct() {
+      this.counter++;
+    },
+    removeProduct() {
+      if (this.counter !== 1) {
+        this.counter--;
+      }
+    },
   },
   filters: {
     numberFormat
