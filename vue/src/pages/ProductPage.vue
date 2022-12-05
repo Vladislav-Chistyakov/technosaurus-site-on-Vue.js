@@ -200,6 +200,5 @@ export default {
   filters: {
     numberFormat
   },
-
 }
 </script>
