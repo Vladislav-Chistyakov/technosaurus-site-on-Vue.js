@@ -13,11 +13,11 @@
       {{ product.price | numberFormat }} ₽
     </span>
     <ul class="colors colors--black">
-      <li class="colors__item" v-for="colorTheme in product.color" :key="colorTheme.colorId">
+      <li class="colors__item" v-for="colorTheme in product.colors" :key="colorTheme.id">
         <label class="colors__label">
           <input class="colors__radio sr-only" type="radio"
-           :value="colorTheme.colorHesh" v-model="color" >
-          <span class="colors__value" :style="{ backgroundColor: colorTheme.colorHesh, }">
+           :value="colorTheme.code" v-model="color" >
+          <span class="colors__value" :style="{ backgroundColor: colorTheme.code, }">
           </span>
         </label>
       </li>
@@ -39,6 +39,9 @@ export default {
   },
   methods: {
     gotoPage,
+    log(colorTheme) {
+      console.log(colorTheme);
+    },
   },
   filters: {
     numberFormat,
