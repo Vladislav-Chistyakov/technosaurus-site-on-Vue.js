@@ -1,5 +1,7 @@
 <template>
-   <main class="content container">
+  <main class="content container" v-if="productLoading">Загрузка товара...</main>
+  <main class="content container" v-else-if="!productsData">Не удалось получить товар</main>
+  <main class="content container" v-else>
     <div class="content__top">
       <ul class="breadcrumbs">
         <li class="breadcrumbs__item">
@@ -23,7 +25,7 @@
     <section class="item">
       <div class="item__pics pics">
         <div class="pics__wrapper">
-          <img width="570" height="570" :src="product.image" :alt="product.title">
+          <img width="570" height="570" :src="product.image.file.url" :alt="product.title">
         </div>
       </div>
 
@@ -41,10 +43,10 @@
             <fieldset class="form__block">
               <legend class="form__legend">Цвет:</legend>
               <ul class="colors">
-                <li class="colors__item" v-for="colorTheme in product.color" :key="colorTheme.colorId">
+                <li class="colors__item" v-for="colorTheme in product.colors" :key="colorTheme.id">
                   <label class="colors__label">
-                    <input class="colors__radio sr-only" type="radio" name="color-item" :value="colorTheme.colorHesh" v-model="colorTheme.colorId">
-                    <span class="colors__value" :style="{ backgroundColor: colorTheme.colorHesh }">
+                    <input class="colors__radio sr-only" type="radio" name="color-item" :value="colorTheme.colorHesh" v-model="colorTheme.id">
+                    <span class="colors__value" :style="{ backgroundColor: colorTheme.code }">
                     </span>
                   </label>
                 </li>
@@ -161,23 +163,26 @@
 </template>
 
 <script>
-import products from '@/data/products';
-import catigories from '@/data/catigories';
 import gotoPage from '@/helpers/gotoPage';
 import numberFormat from '@/helpers/numberFormat'
+import axios from 'axios';
+import {API_BASE_URL} from '@/config';
 
 export default {
   data() {
     return {
       productAmount: 1,
+      productsData: null,
+      productLoading: false,
+      productLoadingFailed: false,
     };
   },
   computed: {
     product() {
-      return products.find(product => product.id === +this.$route.params.id);
+      return this.productsData;
     },
     category() {
-      return catigories.find(category => category.id === this.product.catigoryId);
+      return this.productsData.category;
     },
   },
   methods: {
@@ -195,6 +200,22 @@ export default {
         'addProductToCart',
         { productId: this.product.id, amount: this.productAmount}
       );
+    },
+    loadProduct() {
+      this.productLoading = true;
+      this.productLoadingFailed = false;
+      axios.get(API_BASE_URL +  '/api/products/' + this.$route.params.id)
+      .then(response => this.productsData = response.data)
+      .catch(() => this.productLoadingFailed = true)
+      .then(() => this.productLoading = false);
+    },
+  },
+  watch: {
+    '$route.params.id': {
+      handler() {
+        this.loadProduct();
+      },
+      immediate: true,
     },
   },
   filters: {
