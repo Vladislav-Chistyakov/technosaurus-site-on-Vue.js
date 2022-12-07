@@ -23,11 +23,11 @@
 
 <script>
 
-import products from '@/data/products';
 import ProductList from '@/components/ProductList.vue';
 import BasePagination from '@/components/BasePagination.vue';
 import ProductFilter from '@/components/ProductFilter.vue';
 import axios from 'axios';
+import {API_BASE_URL} from '@/config';
 
 
 export default {
@@ -44,34 +44,6 @@ export default {
     };
   },
   computed: {
-    filteredProducts() {
-      let filterProducts = products;
-      if (this.filterPriceFrom > 0) {
-        filterProducts = filterProducts.filter((product) => product.price > this.filterPriceFrom);
-      }
-      if (this.filterPriceTo > 0) {
-        filterProducts = filterProducts.filter((product) => product.price < this.filterPriceTo);
-      }
-      if (this.filtrCatId) {
-        filterProducts = filterProducts.filter((product) => product.catigoryId === this.filtrCatId);
-      }
-      if (this.filtrColorId) {
-        let array = [];
-        let test = null;
-        for (let product of filterProducts) {
-          test = false
-          for (let colorRes of product.color) {
-            if (colorRes.colorId === this.filtrColorId) {
-              test = true;
-              break;
-            }
-          }
-          if (test) array.push(product);
-        }
-        filterProducts = array;
-      }
-      return filterProducts;
-    },
     products() {
       return this.productsData
       ? this.productsData.items.map(product => {
@@ -90,12 +62,36 @@ export default {
   },
   methods: {
     loadProducts() {
-      axios.get(`https://vue-study.skillbox.cc/api/products?page=${this.page}&limit=${this.productsPerPage}`)
+      clearTimeout(this.loadProductsTimer);
+      this.loadProductsTimer = setTimeout(() => {
+        axios.get(`${API_BASE_URL}/api/products`, {
+        params: {
+          page: this.page,
+          limit: this.productsPerPage,
+          categoryId: this.filtrCatId,
+          minPrice: this.filterPriceFrom,
+          maxPrace: this.filterPriceTo,
+          colorId: this.filtrColorId,
+        },
+      })
         .then(response => this.productsData = response.data);
+      }, 0);
     },
   },
   watch: {
     page() {
+      this.loadProducts();
+    },
+    filterPriceFrom() {
+      this.loadProducts();
+    },
+    filterPriceTo() {
+      this.loadProducts();
+    },
+    filtrCatId() {
+      this.loadProducts();
+    },
+    filtrColorId() {
       this.loadProducts();
     },
   },

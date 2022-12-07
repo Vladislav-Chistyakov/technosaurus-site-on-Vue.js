@@ -32,11 +32,11 @@
           <fieldset class="form__block">
             <legend class="form__legend">Цвет</legend>
             <ul class="colors">
-              <li class="colors__item" v-for="color in colors" :key="color.colorId">
+              <li class="colors__item" v-for="color in colors" :key="color.id">
                 <label class="colors__label">
                   <input class="colors__radio sr-only" type="radio"
-                   name="color" :value="color.colorId" v-model="currentColorId">
-                  <span class="colors__value" :style="{ backgroundColor: color.colorHesh, }">
+                   name="color" :value="color.id" v-model="currentColorId">
+                  <span class="colors__value" :style="{ backgroundColor: color.code, }">
                   </span>
                 </label>
               </li>
@@ -117,8 +117,8 @@
 </template>
 
 <script>
-import catigories from '@/data/catigories';
-import colors from '@/data/colors';
+import axios from 'axios';
+import {API_BASE_URL} from '@/config';
 
 export default {
   props: ['priceFrom', 'priceTo', 'categoryId', 'colorId'],
@@ -128,14 +128,17 @@ export default {
       currentPriceTo: 0,
       currentCategoryId: 0,
       currentColorId: 0,
+
+      colorsData: null,
+      categoriesData: null,
     };
   },
   computed: {
     categories() {
-      return catigories;
+      return this.categoriesData ? this.categoriesData.items : [];
     },
     colors() {
-      return colors;
+      return this.colorsData ? this.colorsData.items : [];
     }
   },
   methods: {
@@ -151,6 +154,16 @@ export default {
       this.$emit('update:categoryId', 0);
       this.$emit('update:colorId', 0);
     },
+    loadCategories() {
+      axios.get(API_BASE_URL + '/api/productCategories').then(response => this.categoriesData = response.data);
+    },
+    loadColors() {
+      axios.get(API_BASE_URL + '/api/colors').then(response => this.colorsData = response.data);
+    },
+  },
+  created() {
+    this.loadCategories();
+    this.loadColors();
   },
   watch: {
     priceFrom(value) {
