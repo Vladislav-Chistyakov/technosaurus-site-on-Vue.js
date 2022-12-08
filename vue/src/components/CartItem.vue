@@ -30,7 +30,7 @@
     {{ (item.amount * item.product.price) | numberFormat }} ₽
   </b>
 
-  <button class="product__del button-del" type="button" @click.prevent="deleteProduct(item.productId)" aria-label="Удалить товар из корзины">
+  <button class="product__del button-del" type="button" @click.prevent="deleteProductsToCart()" aria-label="Удалить товар из корзины">
     <svg width="20" height="20" fill="currentColor">
       <use xlink:href="#icon-close"></use>
     </svg>
@@ -52,12 +52,15 @@ import { mapMutations } from 'vuex';
           return this.item.amount;
         },
         set(value) {
-          this.$store.commit('updateCartProductAmount', {productId: this.item.productId, amount: value});
+          this.$store.dispatch('updateCartProductAmount', {productId: this.item.productId, amount: value});
         }
       },
     },
     methods: {
       ...mapMutations({deleteProduct: 'deleteCartProduct'}),
+      deleteProductsToCart() {
+        this.$store.dispatch('deleteProductToCart', this.item.productId);
+      },
     },
   };
 </script>

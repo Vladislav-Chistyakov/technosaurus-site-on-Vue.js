@@ -130,7 +130,7 @@ export default {
   },
   methods: {
     ...mapActions(['loadCart']),
-    ...mapMutations(['updateUserAccessKey'])
+    ...mapMutations(['updateUserAccessKey', 'updateCartProductsData']),
   },
 };
 </script>
