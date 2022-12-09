@@ -43,6 +43,7 @@ import numberFormat from '@/helpers/numberFormat';
 import { mapMutations } from 'vuex';
 
 
+
   export default {
     filters: {numberFormat},
     props: ['item'],
