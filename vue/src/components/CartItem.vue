@@ -11,7 +11,7 @@
   </span>
 
   <div class="product__counter form__counter">
-    <button type="button" aria-label="Убрать один товар">
+    <button @click.number="removeOneItem(amount)" type="button" aria-label="Убрать один товар">
       <svg width="10" height="10" fill="currentColor">
         <use xlink:href="#icon-minus"></use>
       </svg>
@@ -19,7 +19,7 @@
 
     <input type="text" v-model.number="amount" name="count">
 
-    <button type="button" aria-label="Добавить один товар">
+    <button @click.number="addOneItem(amount)" type="button" aria-label="Добавить один товар">
       <svg width="10" height="10" fill="currentColor">
         <use xlink:href="#icon-plus"></use>
       </svg>
@@ -61,6 +61,14 @@ import { mapMutations } from 'vuex';
       ...mapMutations({deleteProduct: 'deleteCartProduct'}),
       deleteProductsToCart() {
         this.$store.dispatch('deleteProductToCart', this.item.productId);
+      },
+      removeOneItem(value){
+        if (value != 1) {
+          this.$store.dispatch('updateCartProductAmount', {productId: this.item.productId, amount: value - 1});
+        }
+      },
+      addOneItem(value){
+        this.$store.dispatch('updateCartProductAmount', {productId: this.item.productId, amount: value + 1});
       },
     },
   };
