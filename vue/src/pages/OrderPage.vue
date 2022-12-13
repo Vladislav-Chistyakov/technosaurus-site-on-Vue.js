@@ -22,8 +22,14 @@
       <h1 class="content__title">
         Корзина
       </h1>
-      <span class="content__info">
-        3 товара
+      <span class="content__info" v-if="(amountProducts > 1 && amountProducts <= 4)">
+        {{ amountProducts }} товара
+      </span>
+      <span class="content__info" v-else-if="(amountProducts === 1)">
+        {{ amountProducts }} товар
+      </span>
+      <span class="content__info" v-else>
+        {{ amountProducts }} товаров
       </span>
     </div>
 
@@ -69,7 +75,7 @@
                 </label>
               </li>
               <li class="options__item">
-                <label class="options__label">
+                <label class="options__label" @click="consol()">
                   <input class="options__radio sr-only" type="radio" name="pay" value="cash">
                   <span class="options__value">
                     Наличными при получении
@@ -80,34 +86,8 @@
           </div>
         </div>
 
-        <div class="cart__block">
-          <ul class="cart__orders">
-            <li class="cart__order">
-              <h3>Смартфон Xiaomi Redmi Note 7 Pro 6/128GB</h3>
-              <b>18 990 ₽</b>
-              <span>Артикул: 150030</span>
-            </li>
-            <li class="cart__order">
-              <h3>Гироскутер Razor Hovertrax 2.0ii</h3>
-              <b>4 990 ₽</b>
-              <span>Артикул: 150030</span>
-            </li>
-            <li class="cart__order">
-              <h3>Электрический дрифт-карт Razor Lil’ Crazy</h3>
-              <b>8 990 ₽</b>
-              <span>Артикул: 150030</span>
-            </li>
-          </ul>
-
-          <div class="cart__total">
-            <p>Доставка: <b>500 ₽</b></p>
-            <p>Итого: <b>3</b> товара на сумму <b>37 970 ₽</b></p>
-          </div>
-
-          <button class="cart__button button button--primery" type="submit">
-            Оформить заказ
-          </button>
-        </div>
+        <OrderOutputWindow :products="products" :final-price="totalPrice"
+        :amount-products="amountProducts"/>
         <div class="cart__error form__error-block">
           <h4>Заявка не отправлена!</h4>
           <p>
@@ -123,15 +103,26 @@
 
 import BaseFormText from '@/components/BaseFormText.vue';
 import BaseFormTexteria from '@/components/BaseFormTexteria.vue';
-
+import OrderOutputWindow from '@/components/OrderOutputWindow.vue';
+import { mapGetters } from 'vuex';
 
  export default {
-  components: { BaseFormText, BaseFormTexteria },
+  components: { BaseFormText, BaseFormTexteria, OrderOutputWindow },
   data() {
     return {
       formData: {},
       formError: {},
     };
+  },
+  computed: {
+    ...mapGetters({products: 'cartDetailProducts', totalPrice: 'cartTotalPrice', amountProducts: 'cartAmountPrice',}),
+  },
+  methods: {
+    consol() {
+      console.log(this.products);
+      console.log(this.totalPrice);
+      console.log(this.amountProducts);
+    },
   },
  }
 </script>

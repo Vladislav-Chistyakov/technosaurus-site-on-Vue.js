@@ -35,7 +35,6 @@
             <CartItem  v-for="item in products" :key="item.productId" :item="item"/>
           </ul>
         </div>
-
         <div class="cart__block">
           <p class="cart__desc">
             Мы&nbsp;посчитаем стоимость доставки на&nbsp;следующем этапе
@@ -43,7 +42,6 @@
           <p class="cart__price">
             Итого: <span>{{ totalPrice | numberFormat }} ₽</span>
           </p>
-
           <router-link tag="button" :to="{name: 'order'}" class="cart__button button button--primery" type="submit">
             Оформить заказ
           </router-link>
@@ -65,5 +63,6 @@ import CartItem from '@/components/CartItem.vue';
     computed: {
       ...mapGetters({products: 'cartDetailProducts', totalPrice: 'cartTotalPrice', amountProducts: 'cartAmountPrice',}),
     },
+    filters: {numberFormat},
   };
 </script>
