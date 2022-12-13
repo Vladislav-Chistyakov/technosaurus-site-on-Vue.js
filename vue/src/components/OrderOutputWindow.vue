@@ -11,7 +11,7 @@
       </b>
       <b v-else>
         {{ amountProducts }} товаров
-      </b> на сумму <b>{{ finalPrice | numberFormat}} ₽</b></p>
+      </b> на сумму <b>{{ finalPrice + priceForDelivery | numberFormat}} ₽</b></p>
     </div>
 
     <button class="cart__button button button--primery" type="submit">
@@ -25,6 +25,11 @@ import numberFormat from '@/helpers/numberFormat';
 import OrderProductList from './OrderProductList.vue';
 
 export default {
+  data() {
+    return {
+      priceForDelivery: 500,
+    };
+  },
   components: {OrderProductList},
   props: ['products', 'finalPrice', 'amountProducts'],
   filters: {numberFormat},
