@@ -31,32 +31,12 @@
       <form class="cart__form form" action="#" method="POST">
         <div class="cart__field">
           <div class="cart__data">
-
-            <BaseFormText title="ФИО" v-model="formData.name" :type="name" placeholder="Введите ваше полное имя" :error="formError.name"></BaseFormText>
-
-            <label class="form__label">
-              <input class="form__input" type="text" v-model="formData.address" name="address" placeholder="Введите ваш адрес">
-              <span class="form__value">Адрес доставки</span>
-              <span v-if="formError.address" class="form__error">{{ formError.address }}</span>
-            </label>
-
-            <label class="form__label">
-              <input class="form__input" type="tel" v-model="formData.phone" name="phone" placeholder="Введите ваш телефон">
-              <span class="form__value">Телефон</span>
-              <span v-if="formError.phone" class="form__error">{{ formError.phone }}</span>
-            </label>
-
-            <label class="form__label">
-              <input class="form__input" type="email" v-model="formData.email" name="email" placeholder="Введи ваш Email">
-              <span class="form__value">Email</span>
-              <span v-if="formError.email" class="form__error">{{ formError.email }}</span>
-            </label>
-
-            <BaseFormTexteria title="Комментарий к заказу" v-model="formData.comments" placeholder="Ваши пожелания" :error="formError.comments">
-            </BaseFormTexteria>
-
+            <BaseFormText title="ФИО" v-model="formData.name" type="name" placeholder="Введите ваше полное имя" :error="formError.name"/>
+            <BaseFormText title="Адрес доставки" v-model="formData.address" type="text" placeholder="Введите ваш адрес" :error="formError.address"/>
+            <BaseFormText title="Телефон" v-model="formData.phone" type="tel" placeholder="Введите ваш телефон" :error="formError.phone"/>
+            <BaseFormText title="Email" v-model="formData.email" type="email" placeholder="Введи ваш Email" :error="formError.email"/>
+            <BaseFormTexteria title="Комментарий к заказу" v-model="formData.comments" placeholder="Ваши пожелания" :error="formError.comments"/>
           </div>
-
           <div class="cart__options">
             <h3 class="cart__title">Доставка</h3>
             <ul class="cart__options options">
