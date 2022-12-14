@@ -1,8 +1,8 @@
 <template>
   <div class="cart__block">
-    <OrderProductList :products="products"/>
+    <OrderProductList :products="products" :page-info="0"/>
     <div class="cart__total">
-      <p>Доставка: <b>500 ₽</b></p>
+      <p>Доставка: <b>{{priceForDelivery}} ₽</b></p>
       <p>Итого: <b v-if="(amountProducts > 1 && amountProducts <= 4)">
         {{ amountProducts }} товара
       </b>
