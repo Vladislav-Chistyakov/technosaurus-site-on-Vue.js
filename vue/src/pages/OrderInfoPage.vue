@@ -1,6 +1,15 @@
 <template>
-  <main class="content container">
-    <div class="content__top">
+
+  <main class="content container" >
+    <div v-if="!orderInfo">
+    <h2 class="content__title" >У вас нет активного заказа.</h2>
+    <p class="cart__message">Чтобы сделать заказ, перейдите на вкладку <router-link class="breadcrumbs__link" :to="{name: 'main'}" tag="a">
+            Каталог
+          </router-link></p>
+    </div>
+    <div v-else-if="orderInfo">
+
+      <div class="content__top">
       <ul class="breadcrumbs">
         <li class="breadcrumbs__item">
           <a class="breadcrumbs__link" href="index.html">
@@ -24,7 +33,7 @@
       </h1>
     </div>
 
-    <section class="cart">
+    <section class="cart" >
       <form class="cart__form form" action="#" method="POST">
         <div class="cart__field">
           <p class="cart__message">
@@ -76,37 +85,10 @@
           </ul>
         </div>
 
-        <OrderInfoWindow :products="orderInfo">
-
-        </OrderInfoWindow>
-
-        <!--<div class="cart__block">
-          <ul class="cart__orders">
-            <li class="cart__order">
-              <h3>Смартфон Xiaomi Redmi Note 7 Pro 6/128GB</h3>
-              <b>18 990 ₽</b>
-              <span>Артикул: 150030</span>
-            </li>
-            <li class="cart__order">
-              <h3>Гироскутер Razor Hovertrax 2.0ii</h3>
-              <b>4 990 ₽</b>
-              <span>Артикул: 150030</span>
-            </li>
-            <li class="cart__order">
-              <h3>Электрический дрифт-карт Razor Lil’ Crazy</h3>
-              <b>8 990 ₽</b>
-              <span>Артикул: 150030</span>
-            </li>
-          </ul>
-
-          <div class="cart__total">
-            <p>Доставка: <b>500 ₽</b></p>
-            <p>Итого: <b>3</b> товара на сумму <b>37 970 ₽</b></p>
-          </div>
-        </div>-->
-
+        <OrderInfoWindow :products="orderInfo"/>
       </form>
     </section>
+    </div>
   </main>
 </template>
 
