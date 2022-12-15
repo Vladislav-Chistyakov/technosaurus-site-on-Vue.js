@@ -1,14 +1,13 @@
 <template>
 
   <main class="content container" >
-    <div v-if="!orderInfo">
-    <h2 class="content__title" >У вас нет активного заказа.</h2>
-    <p class="cart__message">Чтобы сделать заказ, перейдите на вкладку <router-link class="breadcrumbs__link" :to="{name: 'main'}" tag="a">
-            Каталог
-          </router-link></p>
+    <div v-if="statusLoading">
+    <h2 class="content__title" >Заказ загружается</h2>
     </div>
-    <div v-else-if="orderInfo">
-
+    <div v-else-if="statusOrder">
+      <h2 class="content__title" >Произошла ошибка с выводом вашего заказа</h2>
+    </div>
+    <div v-else-if="orderInfo && status">
       <div class="content__top">
       <ul class="breadcrumbs">
         <li class="breadcrumbs__item">
@@ -84,8 +83,7 @@
             </li>
           </ul>
         </div>
-
-        <OrderInfoWindow :products="orderInfo"/>
+        <OrderInfoWindow v-if="status" :products="orderInfo"/>
       </form>
     </section>
     </div>
@@ -95,29 +93,36 @@
 <script>
 import OrderInfoWindow from '@/components/OrderInfoWindow.vue';
 
+
   export default {
     components: { OrderInfoWindow },
     data() {
       return {
         orderInfo: {},
+        statusOrder: false,
+        status: false,
+        statusLoading: false,
       };
     },
     created() {
       if (this.$store.state.orderInfo && this.$store.state.orderInfo.id === this.$route.params.id) {
         this.orderInfo = this.$store.state.orderInfo;
         return;
-      }
-      this.$store.dispatch('loadOrderInfo', this.$route.params.id);
-      this.orderInfo = this.$store.state.orderInfo;
-    },
-    computed: {
-      amountProducts() {
-          let amount = 0;
-          for (let items of this.orderInfo.basket.items) {
-            amount += items.quantity;
+      } else {
+        this.statusLoading = true;
+        this.$store.dispatch('loadOrderInfo', this.$route.params.id)
+          .then(() => {
+            this.orderInfo = this.$store.state.orderInfo;
+            this.status = true;
+            this.statusLoading = false;
           }
-          return amount;
-        },
-      },
+        ).catch(() => {
+          this.statusLoading = false;
+          this.statusOrder = true;
+          this.status = false;
+        });
+        return;
+      }
+    },
   }
 </script>

@@ -22,7 +22,6 @@ export default {
     };
   },
   props: ['products'],
-  //quantity
   filters: {numberFormat},
   computed: {
     amount() {
