@@ -107,6 +107,7 @@ import OrderInfoWindow from '@/components/OrderInfoWindow.vue';
     created() {
       if (this.$store.state.orderInfo && this.$store.state.orderInfo.id === this.$route.params.id) {
         this.orderInfo = this.$store.state.orderInfo;
+        this.status = true;
         return;
       } else {
         this.statusLoading = true;
